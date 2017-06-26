@@ -119,8 +119,6 @@ public class ReadingsActivity extends AppCompatActivity implements ServiceConnec
 
 
 
-
-
     @Override
     protected void onResume() {
         super.onResume();
