@@ -95,7 +95,13 @@ public class ReadingsActivity extends AppCompatActivity implements ServiceConnec
 
     /*********************************************************************************************/
     @ViewById
-    EditText someReading;
+    EditText tempReading;
+
+    @ViewById
+    EditText lightReading;
+
+    @ViewById
+    EditText humidityReading;
 
     private DatabaseReference firebaseReference;
     private FirebaseDatabase firebaseDBInstance;
@@ -227,18 +233,22 @@ public class ReadingsActivity extends AppCompatActivity implements ServiceConnec
                 break;
             case TEMPERATURE:
                 //Need
+                tempReading.setText(data.toString());
+                firebaseReference.setValue(data.toString());
                 break;
             case HUMIDITY:
                 //Need
+                humidityReading.setText(data.toString());
+                firebaseReference.setValue(data.toString());
                 break;
             case PRESSURE:
                 break;
             case HEARTRATE:
-                someReading.setText(data.toString());
-                firebaseReference.setValue(data.toString());
                 break;
             case LIGHT:
                 //Need
+                lightReading.setText(data.toString());
+                firebaseReference.setValue(data.toString());
                 break;
             case STEPS:
                 break;
