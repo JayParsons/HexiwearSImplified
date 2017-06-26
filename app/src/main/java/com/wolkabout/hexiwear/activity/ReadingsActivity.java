@@ -85,8 +85,6 @@ public class ReadingsActivity extends AppCompatActivity implements ServiceConnec
     @Bean
     Dialog dialog;
 
-
-
     private ProgressDialog progressDialog;
     private HexiwearDevice hexiwearDevice;
     private BluetoothService bluetoothService;
@@ -94,12 +92,14 @@ public class ReadingsActivity extends AppCompatActivity implements ServiceConnec
     private Mode mode = Mode.IDLE;
     private boolean shouldUnpair;
 
+
+    /*********************************************************************************************/
     @ViewById
     EditText someReading;
 
     private DatabaseReference firebaseReference;
     private FirebaseDatabase firebaseDBInstance;
-
+    /*********************************************************************************************/
 
 
     @AfterInject
@@ -205,7 +205,7 @@ public class ReadingsActivity extends AppCompatActivity implements ServiceConnec
         return;
     }
 
-
+    /*********************************************************************************************/
     //This is were data comes in
     //This is the only method you need to worry about :)
     @Receiver(actions = BluetoothService.DATA_AVAILABLE, local = true)
@@ -259,6 +259,7 @@ public class ReadingsActivity extends AppCompatActivity implements ServiceConnec
                 break;
         }
     }
+    /*********************************************************************************************/
 
     @Receiver(actions = BluetoothService.STOP)
     void onStopReading() {
