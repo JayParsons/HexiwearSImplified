@@ -78,15 +78,14 @@ public class ReadingsActivity extends AppCompatActivity implements ServiceConnec
 
     @Bean
     HexiwearDevices hexiwearDevices;
-
+   // https://docs.google.com/presentation/d/1jlulWnRJW8Mth8hjSQLfTnj9KbDxXnVOKnSWGCXZPFs/edit#slide=id.gcb9a0b074_1_0
     @Pref
     Credentials_ credentials;
 
     @Bean
     Dialog dialog;
 
-    @ViewById
-    EditText someReading;
+
 
     private ProgressDialog progressDialog;
     private HexiwearDevice hexiwearDevice;
@@ -95,8 +94,13 @@ public class ReadingsActivity extends AppCompatActivity implements ServiceConnec
     private Mode mode = Mode.IDLE;
     private boolean shouldUnpair;
 
+    @ViewById
+    EditText someReading;
+
     private DatabaseReference firebaseReference;
     private FirebaseDatabase firebaseDBInstance;
+
+
 
     @AfterInject
     void startService() {
