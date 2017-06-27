@@ -234,12 +234,12 @@ public class ReadingsActivity extends AppCompatActivity implements ServiceConnec
             case TEMPERATURE:
                 //Need
                 tempReading.setText(data.toString());
-                firebaseReference.setValue(data.toString());
+                //firebaseReference.setValue(data.toString());
                 break;
             case HUMIDITY:
                 //Need
                 humidityReading.setText(data.toString());
-                firebaseReference.setValue(data.toString());
+                //firebaseReference.setValue(data.toString());
                 break;
             case PRESSURE:
                 break;
@@ -248,7 +248,7 @@ public class ReadingsActivity extends AppCompatActivity implements ServiceConnec
             case LIGHT:
                 //Need
                 lightReading.setText(data.toString());
-                firebaseReference.setValue(data.toString());
+                //firebaseReference.setValue(data.toString());
                 break;
             case STEPS:
                 break;
