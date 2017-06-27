@@ -65,6 +65,7 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Calendar;
 import java.util.Map;
 
 @EActivity(R.layout.activity_readings)
@@ -120,7 +121,7 @@ public class ReadingsActivity extends AppCompatActivity implements ServiceConnec
     @AfterInject
     void startFirebase(){
         firebaseDBInstance = FirebaseDatabase.getInstance();
-        firebaseReference = firebaseDBInstance.getReference("HR");
+        firebaseReference = firebaseDBInstance.getReference();
     }
 
 
@@ -190,7 +191,7 @@ public class ReadingsActivity extends AppCompatActivity implements ServiceConnec
         // Something terrible happened.
     }
 
-        @Override
+    @Override
     protected void onDestroy() {
         if (isBound) {
             unbindService(this);
@@ -228,40 +229,29 @@ public class ReadingsActivity extends AppCompatActivity implements ServiceConnec
             return;
         }
 
+        /**************************************************************************/
+        Calendar currentTime = Calendar.getInstance();
+        String day = Integer.toString(currentTime.get(Calendar.DAY_OF_YEAR));
+        String hour = Integer.toString(currentTime.get(Calendar.HOUR_OF_DAY));
+        String minute = Integer.toString(currentTime.get(Calendar.MINUTE));
+        String second = Integer.toString(currentTime.get(Calendar.SECOND));
+        /**************************************************************************/
+
         switch (characteristic) {
-            case BATTERY:
-                break;
             case TEMPERATURE:
-                //Need
-                tempReading.setText(data.toString());
-                //firebaseReference.setValue(data.toString());
+                tempReading.setText(data);
+                firebaseReference.child("current").child("temp").setValue(data);
+                firebaseReference.child("history").child(day).child(hour).child(minute).child(second).child("temp").setValue(data);
                 break;
             case HUMIDITY:
-                //Need
-                humidityReading.setText(data.toString());
-                //firebaseReference.setValue(data.toString());
-                break;
-            case PRESSURE:
-                break;
-            case HEARTRATE:
+                humidityReading.setText(data);
+                firebaseReference.child("current").child("hum").setValue(data);
+                firebaseReference.child("history").child(day).child(hour).child(minute).child(second).child("hum").setValue(data);
                 break;
             case LIGHT:
-                //Need
-                lightReading.setText(data.toString());
-                //firebaseReference.setValue(data.toString());
-                break;
-            case STEPS:
-                break;
-            case CALORIES:
-                break;
-            case ACCELERATION:
-                final String[] accelerationReadings = data.split(";");
-                break;
-            case MAGNET:
-                final String[] magnetReadings = data.split(";");
-                break;
-            case GYRO:
-                final String[] gyroscopeReadings = data.split(";");
+                lightReading.setText(data);
+                firebaseReference.child("current").child("light").setValue(data);
+                firebaseReference.child("history").child(day).child(hour).child(minute).child(second).child("light").setValue(data);
                 break;
             default:
                 break;
